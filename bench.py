@@ -19,7 +19,7 @@ import matplotlib.pyplot as plt
 from ultralytics import YOLO
 
 ROOT = Path(__file__).resolve().parent
-DATA = ROOT.parent / "data/observing/train"
+DATA = ROOT / "data/observing/train"
 import sys
 MODEL = sys.argv[1] if len(sys.argv) > 1 else "yolo11n.pt"
 IMGSZ = int(sys.argv[2]) if len(sys.argv) > 2 else 640
@@ -117,7 +117,7 @@ def sample_frames():
     return out
 
 def sample_kitti():
-    root = ROOT.parent / "data/kitti"
+    root = ROOT / "data/kitti"
     paths = sorted((root / "images/val").glob("*.png"))
     out = []
     for p in random.Random(SEED).sample(paths, N_IMAGES):

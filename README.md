@@ -1,34 +1,45 @@
-# Sensor Reality Sprint: Camera Health Benchmark
+# Sensor Reality Sprint: Camera Degradation Health Score
 
-Source code for a camera degradation benchmark on drone and KITTI/ADAS images.
+Mini project evaluating camera image degradation for drone and ADAS object detection.
 
-## Source
+## Repository map
 
-- `t1_health/bench.py` applies six image corruptions and calculates image-health features, detector consistency F1, and ground-truth recall.
-- `t1_health/requirements.txt` lists the Python dependencies.
+- `bench.py`: creates blur, motion blur, noise, exposure, and JPEG corruptions; runs detector metrics and writes benchmark outputs.
+- `results/`: primary drone benchmark outputs and evidence.
+- `reports/`: five individual report drafts, one per team member.
+- `slide.pdf`: one-page project summary following the class template.
+- `TEAMMATES.md`: task ownership and individual deliverables.
+- `requirements.txt`: Python dependencies.
 
-## Run
+## Reproduce the primary runs
 
-Use Python 3.10 or newer. Place the input data and YOLO weights at the local paths below, then run from the repository root:
+Use Python 3.10 or newer. Put the datasets at the expected relative paths and YOLO model files in the repository root. The dataset and model weights are external assets and are not committed.
 
 ```powershell
 python -m venv .venv
-.venv\Scripts\pip install -r t1_health\requirements.txt
-.venv\Scripts\python t1_health\bench.py yolo11n.pt 640 drone
-.venv\Scripts\python t1_health\bench.py yolo26m.pt 1280 kitti
+.venv\Scripts\pip install -r requirements.txt
+.venv\Scripts\python bench.py yolo11n.pt 640 drone
+.venv\Scripts\python bench.py yolo26m.pt 1280 kitti
 ```
 
-The script expects these data paths:
+Expected data paths:
 
 - `data/observing/train/annotations/annotations.json`
 - `data/observing/train/samples/<video>/drone_video.mp4`
 - `data/kitti/images/val/*.png`
 - `data/kitti/labels/val/*.txt`
 
-Model files such as `yolo11n.pt` and `yolo26m.pt` belong in `t1_health/`. Dataset files and model weights are external local assets and are ignored by Git.
+## Method summary
 
-## Metric note
+The team-built health heuristic multiplies normalized sharpness, entropy, and exposure scores. Consistency F1 compares detections on a degraded frame with detections on the corresponding clean frame. It measures output stability, not correctness. Ground-truth recall measures detector hits against labels. The project uses a machine-centric image-quality framing and references MIQA metrics; it does not run RA-MIQA.
 
-The health score is the project’s hand-built product of sharpness, entropy, and exposure components. Consistency F1 compares predictions from a degraded frame with predictions from the same clean frame; it measures stability, not correctness. Ground-truth recall measures detector hits against labels.
+The primary run uses 75 drone frames, 20 conditions, and 1,500 inferences. The KITTI cross-check uses 20 images. The selected drone CSV summaries, plot, and failure example are included in `results/`; the slide summarizes the KITTI cross-check separately.
 
-The project follows machine-centric image-quality work and references consistency/accuracy definitions from MIQA. It does not run RA-MIQA.
+## References
+
+- Li et al., CVPR 2025, *Image Quality Assessment: From Human to Machine Preference*: [paper](https://openaccess.thecvf.com/content/CVPR2025/html/Li_Image_Quality_Assessment_From_Human_to_Machine_Preference_CVPR_2025_paper.html).
+- MIQA, arXiv:2508.19850, detection consistency and accuracy metrics: [paper](https://arxiv.org/abs/2508.19850).
+
+## Team and reports
+
+See `TEAMMATES.md`. Each report draft is a starting point for its named member to review and complete with the work they personally performed.
