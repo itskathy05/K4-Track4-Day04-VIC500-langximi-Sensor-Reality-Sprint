@@ -54,7 +54,7 @@ Mỗi thành viên phụ trách một phần nội dung và hoàn thiện báo c
 
 **Báo cáo cá nhân:** `reports/2A202602870_Nguyen_Van_Xuan_Loc.md`.
 
-## 5. Nguyễn Văn Quốc Việt — 2A2026xxxxx
+## 5. Nguyễn Văn Quốc Việt — 2A202602973
 
 **Phụ trách:** Phân tích failure case, quyết định kỹ thuật và tích hợp nội dung cuối.
 
@@ -65,9 +65,7 @@ Mỗi thành viên phụ trách một phần nội dung và hoàn thiện báo c
 
 **Bằng chứng có trong repo:** `results/failure_case.png`, `results/summary.csv`, `results/results.csv`, `slide.pdf`, cùng các ngưỡng và phép tính trong `bench.py`.
 
-**Báo cáo cá nhân:** `reports/2A2026xxxxx_Nguyen_Van_Quoc_Viet.md`.
-
-> **Lưu ý MSSV:** MSSV của Quốc Việt hiện được cung cấp dưới dạng `2A2026xxxxx`. Cập nhật MSSV đầy đủ trong file này và tên file báo cáo khi có thông tin chính xác.
+**Báo cáo cá nhân:** `reports/2A202602973_Nguyen_Van_Quoc_Viet.md`.
 
 ## Yêu cầu chung cho báo cáo cá nhân
 
